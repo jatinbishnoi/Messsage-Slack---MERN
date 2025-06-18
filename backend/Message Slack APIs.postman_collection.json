@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "b0be665a-3464-4363-ae22-426faba84eff",
+		"name": "Message Slack APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3035241"
+	},
+	"item": [
+		{
+			"name": "Ping check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dev_server}}/ping",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "sarthak@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "sarthak",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/users/signup",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signin users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json();",
+							"pm.collectionVariables.set(\"authToken\", jsonResponse.data.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "sarthak@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "sarthak",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/users/signin",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Workspace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Dev team",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get workspaces for Member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Test2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete workspace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Test2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/67382b751ed7beaa6a19de83",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"67382b751ed7beaa6a19de83"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a workspace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Test2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/67383ca0242320c08193b460",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"67383ca0242320c08193b460"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get workspace by join code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Test2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/67383ca0242320c08193b460",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"67383ca0242320c08193b460"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update workspace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Developer team",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/67383ca0242320c08193b460",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"67383ca0242320c08193b460"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add member to workspace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "memberId",
+							"value": "673993775d00106342d6a40b",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "member",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/67383ca0242320c08193b460/members",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"67383ca0242320c08193b460",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add channel to workspace Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "channelName",
+							"value": "Testing 3",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/workspaces/673847979d29e5ecb181e134/channels",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"workspaces",
+						"673847979d29e5ecb181e134",
+						"channels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get channel by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "channelName",
+							"value": "Testing 3",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/channels/67382b751ed7beaa6a19de8b",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"channels",
+						"67382b751ed7beaa6a19de8b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "x-access-token",
+							"value": "{{authToken}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{dev_server}}/api/v1/messages/pre-signed-url",
+					"host": [
+						"{{dev_server}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"pre-signed-url"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dev_server",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint:fix": "eslint . --fix ",
+    "start": "npm run lint:fix && npx nodemon src/index.js",
+    "format": "prettier --write .",
+    "lint": "eslint . "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@bull-board/express": "^6.7.2",
+    "aws-sdk": "^2.1692.0",
+    "bcrypt": "^5.1.1",
+    "bull": "^4.16.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "express": "^4.21.2",
+    "http-status-codes": "^2.3.0",
+    "ioredis": "^5.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2"
+  }
+}
